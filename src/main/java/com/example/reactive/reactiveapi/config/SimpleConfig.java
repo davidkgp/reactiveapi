@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.codec.ClientCodecConfigurer;
 import org.springframework.http.codec.json.Jackson2JsonDecoder;
 import org.springframework.http.codec.json.Jackson2JsonEncoder;
+import org.springframework.web.reactive.function.client.ExchangeFunction;
+import org.springframework.web.reactive.function.client.ExchangeFunctions;
 import org.springframework.web.reactive.function.client.ExchangeStrategies;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -34,6 +36,8 @@ public class SimpleConfig {
         return WebClient.builder()
                 .baseUrl(externalEmployeeUrl)
                 .exchangeStrategies(ExchangeStrategies.builder().codecs(this::acceptedCodecs).build())
+                //By default, WebClient uses Reactor Netty as the HTTP client library. But others can be plugged in through a custom ClientHttpConnector.
+                //.exchangeFunction(ExchangeFunctions.create())
                 .build();
     }
 
