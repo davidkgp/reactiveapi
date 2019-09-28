@@ -21,7 +21,8 @@ public class PostClient {
                 .uri("/posts")
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .retrieve()
-                .bodyToFlux(Post.class);
+                .bodyToFlux(Post.class)
+                .onErrorMap(MyException::new);
     }
 
     //this should give a com.fasterxml.jackson.databind.exc.MismatchedInputException:
@@ -30,7 +31,8 @@ public class PostClient {
                 .uri("/posts")
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .retrieve()
-                .bodyToMono(Post.class);
+                .bodyToMono(Post.class)
+                .onErrorMap(MyException::new);
     }
 
 
