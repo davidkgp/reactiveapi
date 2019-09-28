@@ -14,10 +14,10 @@ import reactor.core.publisher.Mono;
 public class PostClient {
 
 
-    private WebClient client;
+    private WebClient clientPost;
 
     public Flux<Post> getPostFlux() {
-        return client.get()
+        return clientPost.get()
                 .uri("/posts")
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .retrieve()
@@ -26,7 +26,7 @@ public class PostClient {
 
     //this should give a com.fasterxml.jackson.databind.exc.MismatchedInputException:
     public Mono<Post> getPostMono() {
-        return client.get()
+        return clientPost.get()
                 .uri("/posts")
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .retrieve()

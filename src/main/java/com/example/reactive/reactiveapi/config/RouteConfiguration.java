@@ -1,7 +1,9 @@
 package com.example.reactive.reactiveapi.config;
 
+import com.example.reactive.reactiveapi.components.EmployeeClient;
 import com.example.reactive.reactiveapi.components.PostClient;
 import com.example.reactive.reactiveapi.components.StudentHandlers;
+import com.example.reactive.reactiveapi.dto.Employee;
 import com.example.reactive.reactiveapi.dto.Post;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -38,6 +40,16 @@ public class RouteConfiguration {
                                 .ok()
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .body(postClient.getPostMono(), Post.class))
+                ;
+    }
+
+    @Bean
+    public RouterFunction<ServerResponse> routesEmployees(EmployeeClient employeeClient) {
+        return route(GET("/myapi/employees"),
+                serverRequest -> ServerResponse
+                        .ok()
+                        .contentType(MediaType.APPLICATION_STREAM_JSON)
+                        .body(employeeClient.getEmployeeFlux(), Employee.class))
                 ;
     }
 
