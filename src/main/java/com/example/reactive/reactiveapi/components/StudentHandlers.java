@@ -10,16 +10,57 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.Arrays;
+import java.util.List;
+
 @Component
 public class StudentHandlers {
+
+    //this api would currently give parse error in browser,if triggered from browser
+    public HandlerFunction<ServerResponse> getLotsOfStudents = serverRequest -> ServerResponse
+            .ok()
+            .contentType(MediaType.APPLICATION_STREAM_JSON)
+            .body(Flux.just(
+                    new Student("Tom", "Hardy", 67, new Address("1156RT", "87A", "Amstelveen")),
+                    new Student("Tom", "Hardy", 67, new Address("1156RT", "87A", "Amstelveen")),
+                    new Student("Tom", "Hardy", 67, new Address("1156RT", "87A", "Amstelveen")),
+                    new Student("Tom", "Hardy", 67, new Address("1156RT", "87A", "Amstelveen")),
+                    new Student("Tom", "Hardy", 67, new Address("1156RT", "87A", "Amstelveen")),
+                    new Student("Tom", "Hardy", 67, new Address("1156RT", "87A", "Amstelveen")),
+                    new Student("Tom", "Hardy", 67, new Address("1156RT", "87A", "Amstelveen")),
+                    new Student("Tom", "Hardy", 67, new Address("1156RT", "87A", "Amstelveen")),
+                    new Student("Tom", "Hardy", 67, new Address("1156RT", "87A", "Amstelveen")),
+                    new Student("Tom", "Hardy", 67, new Address("1156RT", "87A", "Amstelveen")),
+                    new Student("Tom", "Hardy", 67, new Address("1156RT", "87A", "Amstelveen")),
+                    new Student("Tom", "Hardy", 67, new Address("1156RT", "87A", "Amstelveen")),
+                    new Student("Tom", "Hardy", 67, new Address("1156RT", "87A", "Amstelveen")),
+                    new Student("Tom", "Hardy", 67, new Address("1156RT", "87A", "Amstelveen")),
+                    new Student("Tom", "Hardy", 67, new Address("1156RT", "87A", "Amstelveen")),
+                    new Student("Tom", "Hardy", 67, new Address("1156RT", "87A", "Amstelveen")),
+                    new Student("Tom", "Hardy", 67, new Address("1156RT", "87A", "Amstelveen")),
+                    new Student("Tom", "Hardy", 67, new Address("1156RT", "87A", "Amstelveen")),
+                    new Student("Tom", "Hardy", 67, new Address("1156RT", "87A", "Amstelveen")),
+                    new Student("Tom", "Hardy", 67, new Address("1156RT", "87A", "Amstelveen")),
+                    new Student("Tom", "Hardy", 67, new Address("1156RT", "87A", "Amstelveen")),
+                    new Student("Tom", "Hardy", 67, new Address("1156RT", "87A", "Amstelveen")),
+                    new Student("Tom", "Hardy", 67, new Address("1156RT", "87A", "Amstelveen")),
+                    new Student("Tom", "Hardy", 67, new Address("1156RT", "87A", "Amstelveen")),
+                    new Student("Tom", "Hardy", 67, new Address("1156RT", "87A", "Amstelveen")),
+                    new Student("Tom", "Hardy", 67, new Address("1156RT", "87A", "Amstelveen")),
+                    new Student("Tom", "Hardy", 67, new Address("1156RT", "87A", "Amstelveen")),
+                    new Student("Tom", "Hardy", 67, new Address("1156RT", "87A", "Amstelveen")),
+                    new Student("Tom", "Hardy", 67, new Address("1156RT", "87A", "Amstelveen")),
+                    new Student("Tom", "Hardy", 67, new Address("1156RT", "87A", "Amstelveen"))
+
+            ), Student.class);
 
     public HandlerFunction<ServerResponse> getStudents = serverRequest -> ServerResponse
             .ok()
             .body(
                     Flux.just(
-                            new Student("Tom", "Hardy", 67, new Address("1156RT", "87A", "Amstelveen")),
-                            new Student("Arnold", "Dan", 63, new Address("1157RT", "817A", "Amstelveen"))
-                    ), Student.class);
+                            Arrays.asList(new Student("Tom", "Hardy", 67, new Address("1156RT", "87A", "Amstelveen")),
+                                    new Student("Arnold", "Dan", 63, new Address("1157RT", "817A", "Amstelveen")))
+                    ), List.class);
 
     public HandlerFunction<ServerResponse> getStudent = serverRequest -> ServerResponse
             .ok()
